@@ -7,27 +7,36 @@ public class Shell {
     public Shell(int[] datos) {
         this.datos = datos;
     }
+    //[3, 5, 2, 4, 9, 11, 1]
+    //[3, 5, 2, 1, 9, 11, 4]
+    //[1, 5, 2, 3, 9, 11, 4]
+    //[1, 2, 5, 3, 9, 11, 4]
+    //[1, 2, 3, 5, 9, 11, 4]
+    //[1, 2, 3, 5, 9, 4, 11]
+    //[1, 2, 3, 5, 4, 9, 11]
+    //[1, 2, 3, 4, 5, 9, 11]
 
     public void sort() {
-        int inter = datos.length + 1;
-        while (inter > 1) {
-            inter = inter / 2;
-            int bandera = 1;
-            while (bandera == 1) {
-                bandera = 0;
-                int i = 0;
-                while ((i + inter) < datos.length) {
-                    if (datos[i] > datos[i + inter]) {
-                        int aux = datos[i];
-                        datos[i] = datos[i + inter];
-                        datos[i + inter] = aux;
-                        bandera = 1;
+        int intervalo = datos.length;
+        while (intervalo > 1) {
+            intervalo = intervalo / 2;
+            boolean band = true;
+            while (band) {
+                band = false;
+                int indice = 0;
+                while ((indice + intervalo) < datos.length) {
+                    if (datos[indice] > datos[indice + intervalo]) {
+                        int aux = datos[indice];
+                        datos[indice] = datos[indice + intervalo];
+                        datos[indice + intervalo] = aux;
+                        band = true;
                     }
-                    i = i + 1;
+                    indice++;
                 }
             }
         }
     }
+
 
     public String toString(){
         return Arrays.toString(datos);
